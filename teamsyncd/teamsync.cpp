@@ -145,7 +145,6 @@ void TeamSync::addLag(const string &lagName, int ifindex, bool admin_state,
     fvVector.push_back(a);
     fvVector.push_back(o);
     fvVector.push_back(m);
-    m_lagTable.set(lagName, fvVector);
 
     SWSS_LOG_INFO("Add %s admin_status:%s oper_status:%s, mtu: %d",
                    lagName.c_str(), admin_state ? "up" : "down", oper_state ? "up" : "down", mtu);
@@ -162,6 +161,7 @@ void TeamSync::addLag(const string &lagName, int ifindex, bool admin_state,
         tsync->mtu = mtu;
         lag_update = false;
     }
+    m_lagTable.set(lagName, fvVector);
 
     FieldValueTuple s("state", "ok");
     fvVector.push_back(s);
